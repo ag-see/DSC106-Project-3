@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australian Firewatch</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" type="module"></script>
+</head>
+
+<body>
+    <h1>Australian Firewatch</h1>
+    <h2>Comparing Australian Fire Seasons</h2>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="season-select">Year</label>
+            <select id="season-select">
+                <option value="both">Compare Both</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+            </select>
+        </div>
+
+        <div class="control-group month-control">
+            <label for="month-slider">
+                Month: <span id="month-label">January</span>
+            </label>
+            <input
+                type="range"
+                id="month-slider"
+                min="1"
+                max="12"
+                value="1"
+                step="1"
+            >
+        </div>
+    </div>
+
+    <p id="fire-count"></p>
+
+    <div id="map-container">
+        <div class="map-panel" id="map-2019">
+            <h2>2019</h2>
+            <svg id="fire-map-2019"></svg>
+        </div>
+
+        <div class="map-panel" id="map-2020">
+            <h2>2020</h2>
+            <svg id="fire-map-2020"></svg>
+        </div>
+    </div>
+
+    <div class="legend">
+        <span>Low FRP</span>
+        <div class="legend-gradient"></div>
+        <span>High FRP</span>
+    </div>
+
+    <p id="frp-cap" class="legend-note"></p>
+
+    <div id="tooltip"></div>
+</body>
+</html>

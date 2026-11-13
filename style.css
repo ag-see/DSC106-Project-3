@@ -1,0 +1,93 @@
+
+body {
+    margin: 0 auto;
+    padding: 24px;
+    max-width: 1200px;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 900px;
+    margin: 20px 0;
+    padding: 15px;
+    box-sizing: border-box;
+    background: #f2f2f2;
+    border-radius: 8px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.month-control {
+    width: 300px;
+}
+
+#month-slider {
+    width: 100%;
+    cursor: pointer;
+}
+
+#season-select {
+    min-width: 150px;
+    padding: 8px;
+}
+
+#map-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.map-panel {
+    min-width: 0;
+    text-align: center;
+}
+
+.map-panel svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 700px) {
+    #map-container {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .month-control {
+        width: 100%;
+    }
+}
+
+#tooltip {
+    position: fixed;
+    display: none;
+    background: white;
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    pointer-events: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    white-space: nowrap;
+}
