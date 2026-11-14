@@ -62,12 +62,9 @@
 
     <div id="tooltip"></div>
 
+
     <!-- Project Writeup -->
     <section class="project-writeup">
-
-        <h2>About This Project</h2>
-
-        <h3>Motivation</h3>
 
         <p>
             Since most of Australia is bushland, wildfires are a major
@@ -91,61 +88,40 @@
             (<a href="https://en.wikipedia.org/wiki/2019%E2%80%9320_Australian_bushfire_season"
                 target="_blank" rel="noopener noreferrer">Wikipedia,
                 2019–20 Australian bushfire season</a>).
+            Rather than focusing only on the overall destruction caused
+            by the fires, we wanted to provide an interactive way for
+            users to explore the geographic distribution and intensity
+            of fire detections. By comparing 2019 and 2020 across
+            individual months, we can look at how fire activity changed
+            over time and identify geographic patterns that may not be
+            immediately apparent when looking at an entire year.
         </p>
-
-        <p>
-            Rather than focusing only on the overall destruction
-            caused by the fires, we wanted to provide an interactive
-            way for users to explore the geographic distribution
-            and intensity of fire detections. By comparing 2019
-            and 2020 across individual months, we can look at how
-            fire activity changed over time and identify geographic
-            patterns that may not be immediately apparent when
-            looking at an entire year.
-        </p>
-
-        <h3>Data and Visual Design</h3>
 
         <p>
             We used NASA's MODIS (Moderate Resolution Imaging
             Spectroradiometer) active fire detection data collected
             by the Terra and Aqua satellites. The dataset contains
-            geographic coordinates and measurements associated
-            with detected fire activity.
+            geographic coordinates and measurements associated with
+            detected fire activity. Each detection is represented by
+            a point to show where fires were detected and how
+            detections were distributed across the country.
+            Fire Radiative Power (FRP), measured in megawatts (MW),
+            is represented using color intensity. FRP provides an
+            estimate of the radiant energy released by a fire.
+            The color gradient represents lower and higher FRP values,
+            with more intense colors representing higher FRP values.
+            We used side-by-side maps when comparing both years so
+            that users can examine the same geographic areas during
+            the same month.
         </p>
-
-        <p>
-            Each detection is represented by a point to show where
-            fires were detected and how detections were distributed
-            across the country. Fire Radiative Power (FRP), measured
-            in megawatts (MW), is represented using color intensity.
-            FRP provides an estimate of the radiant energy released
-            by a fire. The color gradient represents lower and higher
-            FRP values, with more intense colors representing
-            higher FRP values.
-        </p>
-
-        <p>
-            We used side-by-side maps when comparing both years
-            so that users can examine the same geographic areas
-            during the same month. This makes it easier to identify
-            differences in the distribution and intensity of fire
-            detections between the two years.
-        </p>
-
-        <h3>Data Transformations</h3>
 
         <p>
             We filtered fire detections by year and month to make
             the data easier to explore. This allows users to compare
             the same month across 2019 and 2020 instead of comparing
             entire years with potentially different seasonal
-            distributions.
-        </p>
-
-        <p>
-            We also capped the FRP color scale at the 95th
-            percentile, which is 288.8 MW in the displayed
+            distributions. We also capped the FRP color scale at
+            the 95th percentile, which is 288.8 MW in the displayed
             comparison. This prevents extremely high FRP detections
             from dominating the color scale and making differences
             among the majority of detections harder to distinguish.
@@ -154,8 +130,6 @@
             than being removed.
         </p>
 
-        <h3>Interactions and Development Process</h3>
-
         <p>
             We wanted to combine geographic information with fire
             intensity to create a visualization that was both
@@ -163,25 +137,17 @@
             year and month to support comparisons between the
             two years, then developed the map visualizations and
             incorporated FRP as a color encoding to show differences
-            in fire intensity and distribution.
-        </p>
-
-        <p>
-            We then incorporated interactive sliders and dropdowns
-            for selecting years, months, and comparison modes.
-            We also added hoverable information that displays
-            the year, date, FRP, and confidence for individual
-            fire detections.
-        </p>
-
-        <p>
-            Users can select either 2019 or 2020 or compare both
-            years side by side. They can also select individual
-            months to see how fire detections change throughout
-            the year. These interactions were chosen to help
-            users explore how fire activity changed over time,
-            which would have been harder to identify using
-            a static map.
+            in fire intensity and distribution. We then incorporated
+            interactive sliders and dropdowns for selecting years,
+            months, and comparison modes. We also added hoverable
+            information that displays the year, date, FRP, and
+            confidence for individual fire detections. Users can
+            select either 2019 or 2020 or compare both years
+            side by side. They can also select individual months
+            to see how fire detections change throughout the year.
+            These interactions were chosen to help users explore
+            how fire activity changed over time, which would have
+            been harder to identify using a static map.
         </p>
 
         <h3>Sources</h3>
@@ -198,6 +164,7 @@
         </ol>
 
     </section>
+
 
 </body>
 </html>
