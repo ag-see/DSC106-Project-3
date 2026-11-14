@@ -282,3 +282,14 @@ h2 {
         padding: 24px 20px;
     }
 }
+
+#monthly-chart {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+#monthly-comparison {
+    max-width: 900px;
+    margin: 30px auto;
+}

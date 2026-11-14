@@ -242,3 +242,119 @@ yearSelector.on("change", refreshMap);
 
 // Initial display
 refreshMap();
+
+// Monthly detection comparison
+function drawMonthlyChart() {
+    const months = d3.range(1, 13);
+
+    const monthlyData = months.map(month => ({
+        month,
+        2019: data2019.filter(d => d.MONTH === month).length,
+        2020: data2020.filter(d => d.MONTH === month).length
+    }));
+
+    const chartWidth = 800;
+    const chartHeight = 350;
+
+    const margin = {
+        top: 20,
+        right: 30,
+        bottom: 50,
+        left: 70
+    };
+
+    const svg = d3.select("#monthly-chart")
+        .attr("viewBox", `0 0 ${chartWidth} ${chartHeight}`)
+        .attr("preserveAspectRatio", "xMidYMid meet");
+
+    svg.selectAll("*").remove();
+
+    const x = d3.scaleLinear()
+        .domain([1, 12])
+        .range([margin.left, chartWidth - margin.right]);
+
+    const y = d3.scaleLinear()
+        .domain([
+            0,
+            d3.max(monthlyData, d => Math.max(d[2019], d[2020])) * 1.1
+        ])
+        .nice()
+        .range([chartHeight - margin.bottom, margin.top]);
+
+    const line = d3.line()
+        .x(d => x(d.month))
+        .y(d => y(d.count));
+
+    // X axis
+    svg.append("g")
+        .attr("transform", `translate(0,${chartHeight - margin.bottom})`)
+        .call(
+            d3.axisBottom(x)
+                .tickValues(months)
+                .tickFormat(d => monthNames[d - 1].slice(0, 3))
+        );
+
+    // Y axis
+    svg.append("g")
+        .attr("transform", `translate(${margin.left},0)`)
+        .call(d3.axisLeft(y));
+
+    // Y axis label
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -chartHeight / 2)
+        .attr("y", 20)
+        .attr("text-anchor", "middle")
+        .text("Fire detections");
+
+    // Lines
+    const years = [
+        { year: 2019, color: "#e6550d" },
+        { year: 2020, color: "#3182bd" }
+    ];
+
+    years.forEach(({ year, color }) => {
+        const values = monthlyData.map(d => ({
+            month: d.month,
+            count: d[year]
+        }));
+
+        svg.append("path")
+            .datum(values)
+            .attr("fill", "none")
+            .attr("stroke", color)
+            .attr("stroke-width", 2.5)
+            .attr("d", line);
+
+        svg.selectAll(`.point-${year}`)
+            .data(values)
+            .join("circle")
+            .attr("class", `point-${year}`)
+            .attr("cx", d => x(d.month))
+            .attr("cy", d => y(d.count))
+            .attr("r", 4)
+            .attr("fill", color);
+    });
+
+    // Legend
+    const legend = svg.append("g")
+        .attr("transform", `translate(${chartWidth - 130}, ${margin.top})`);
+
+    years.forEach(({ year, color }, i) => {
+        const item = legend.append("g")
+            .attr("transform", `translate(0, ${i * 22})`);
+
+        item.append("line")
+            .attr("x1", 0)
+            .attr("x2", 20)
+            .attr("stroke", color)
+            .attr("stroke-width", 3);
+
+        item.append("text")
+            .attr("x", 27)
+            .attr("y", 4)
+            .text(year);
+    });
+}
+
+drawMonthlyChart();
