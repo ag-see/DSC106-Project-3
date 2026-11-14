@@ -91,3 +91,33 @@ h1, h2 {
     z-index: 9999;
     white-space: nowrap;
 }
+
+.project-writeup {
+    max-width: 900px;
+    margin: 80px auto 50px;
+    padding: 30px;
+    line-height: 1.7;
+}
+
+.project-writeup h2 {
+    margin-bottom: 25px;
+}
+
+.project-writeup h3 {
+    margin-top: 35px;
+    margin-bottom: 12px;
+}
+
+.project-writeup p {
+    margin-bottom: 16px;
+}
+
+.project-writeup ul,
+.project-writeup ol {
+    padding-left: 25px;
+}
+
+.project-writeup a {
+    text-decoration: underline;
+    overflow-wrap: anywhere;
+}
