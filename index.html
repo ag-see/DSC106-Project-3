@@ -69,87 +69,25 @@
         <h2>Write Up</h2>
 
         <p>
-            Since most of Australia is bushland, wildfires are a major
-            environmental concern in Australia. Understanding how fire
-            activity changes over time can help reveal differences in
-            fire seasons and provide insight into how they may be
-            changing. Our project, Australian Firewatch, shows the
-            geographic distribution and intensity of fire detections
-            across Australia by comparing data from 2019 and 2020.
+            Since most of Australia is bushland, wildfires are a big environmental concern in Australia. Understanding how fire activity changes over time can help reveal differences in fire seasons and might lead to revealing some answers about how they may be changing. Our project, Australian Firewatch, shows the geographic distribution and intensity of fire detections across Australia by comparing data from 2019 and 2020.
         </p>
 
         <p>
-            We chose these years because they encompass the 2019–2020
-            Australian bushfire season, also known as Black Summer,
-            which was one of the most severe bushfire seasons in
-            Australia's recorded history. The season began in June
-            2019 and continued into March 2020, causing widespread
-            destruction across the country. The fires burned millions
-            of hectares of land and had significant impacts on wildlife,
-            communities, and the environment
-            (<a href="https://en.wikipedia.org/wiki/2019%E2%80%9320_Australian_bushfire_season"
-                target="_blank" rel="noopener noreferrer">Wikipedia,
-                2019–20 Australian bushfire season</a>).
-            Rather than focusing only on the overall destruction caused
-            by the fires, we wanted to provide an interactive way for
-            users to explore the geographic distribution and intensity
-            of fire detections. By comparing 2019 and 2020 across
-            individual months, we can look at how fire activity changed
-            over time and identify geographic patterns that may not be
-            immediately apparent when looking at an entire year.
+            We chose these years because they encompass the 2019–2020 Australian bushfire season, also known as Black Summer, which was one of the most severe bushfire seasons in Australia's recorded history which began in June 2019 and continued into March 2020. This season was one of the most widespread destruction across the country. The fires burned millions of hectares of land and had significant impacts on wildlife, communities, and the environment (Wikipedia, 2019–20 Australian bushfire season). Rather than focusing only on the overall destruction caused by the fires, we wanted to provide an interactive way for users to explore the geographic distribution and intensity of fire detections. By comparing 2019 and 2020 across individual months, we can look at how fire activity changed over time and identify geographic patterns that may not be immediately apparent when looking at an entire year.
+
         </p>
 
         <p>
-            We used NASA's MODIS (Moderate Resolution Imaging
-            Spectroradiometer) active fire detection data collected
-            by the Terra and Aqua satellites. The dataset contains
-            geographic coordinates and measurements associated with
-            detected fire activity. Each detection is represented by
-            a point to show where fires were detected and how
-            detections were distributed across the country.
-            Fire Radiative Power (FRP), measured in megawatts (MW),
-            is represented using color intensity. FRP provides an
-            estimate of the radiant energy released by a fire.
-            The color gradient represents lower and higher FRP values,
-            with more intense colors representing higher FRP values.
-            We used side-by-side maps when comparing both years so
-            that users can examine the same geographic areas during
-            the same month.
+            We used NASA’s MODIS (Moderate Resolution Imaging Spectroradiometer) active fire detection data collected by the Terra and Aqua satellites. The dataset contained geographic coordinates and measurements associated with the detected fire activity. Each detection is represented by a point, to show where fires were detected and how detections were distributed across the country.Fire Radiative Power (FRP), measured in megawatts (MW), is represented using color intensity. FRP provides an estimate of the radiant energy released by a fire. The color gradient represents lower and higher FRP values, with more intense colors representing higher FRP values. We used side-by-side maps when comparing both years so that you can look at the same geographic areas during the same month period. 
+
         </p>
 
         <p>
-            We filtered fire detections by year and month to make
-            the data easier to explore. This allows users to compare
-            the same month across 2019 and 2020 instead of comparing
-            entire years with potentially different seasonal
-            distributions. We also capped the FRP color scale at
-            the 95th percentile, which is 288.8 MW in the displayed
-            comparison. This prevents extremely high FRP detections
-            from dominating the color scale and making differences
-            among the majority of detections harder to distinguish.
-            These high FRP values were kept in the dataset and
-            displayed using the maximum color intensity rather
-            than being removed.
+            We filtered fire detections by year and month to make the data more digestible. We did this to have someone that could compare the same month across 2019 and 2020 instead of comparing entire years with potentially different seasonal distributions. We also capped the FRP color scale at the 95th percentile, which is 288.8 MW in the displayed comparison. This prevented extremely high FRP detections from skewing the color scale and making differences among the majority of detections harder to distinguish, and we kept these extremely high FRP values and displayed them with maximum colour intensity rather than being removed. 
         </p>
 
         <p>
-            We wanted to combine geographic information with fire
-            intensity to create a visualization that was both
-            informative and interactive. We grouped the data by
-            year and month to support comparisons between the
-            two years, then developed the map visualizations and
-            incorporated FRP as a color encoding to show differences
-            in fire intensity and distribution. We then incorporated
-            interactive sliders and dropdowns for selecting years,
-            months, and comparison modes. We also added hoverable
-            information that displays the year, date, FRP, and
-            confidence for individual fire detections. Users can
-            select either 2019 or 2020 or compare both years
-            side by side. They can also select individual months
-            to see how fire detections change throughout the year.
-            These interactions were chosen to help users explore
-            how fire activity changed over time, which would have
-            been harder to identify using a static map.
+            We wanted to combine geographic information with fire intensity to create a visualization that was both informative and interactive. We grouped the data by year and month to show comparisons between the two years, then made the map visualizations and incorporated FRP as a color encoding to show the differences and spread in fire intensity. Then, we incorporated interactive sliders and dropdowns for selecting years, months, and comparison modes. We then added hoverable information that displays year, date, FRP and confidence. You can select either 2019 or 2020 or compare both years side by side. You can also select individual months to see how fire detections change throughout the year. These interactions were chosen to show how the fires changed over time, which would have been harder to see in a static map.
         </p>
 
         <h3>Sources</h3>
