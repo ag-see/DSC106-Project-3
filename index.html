@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +9,10 @@
 </head>
 
 <body>
-    <h1>Australian Firewatch</h1>
-    <h2>Comparing Australian Fire Seasons</h2>
+    <header>
+        <h1>Australian Firewatch</h1>
+        <p class="subtitle">Comparing fire detections across Australia during the 2019 and 2020 fire seasons</p>
+    </header>
 
     <div class="controls">
         <div class="control-group">
@@ -34,21 +35,21 @@
                 max="12"
                 value="1"
                 step="1"
+                aria-valuetext="January"
             >
         </div>
     </div>
 
-    <p id="fire-count"></p>
-    <p id="median-frp"></p>
+    <div id="stats"></div>
 
     <div id="map-container">
         <div class="map-panel" id="map-2019">
-            <h2>2019</h2>
+            <h3>2019</h3>
             <svg id="fire-map-2019"></svg>
         </div>
 
         <div class="map-panel" id="map-2020">
-            <h2>2020</h2>
+            <h3>2020</h3>
             <svg id="fire-map-2020"></svg>
         </div>
     </div>
@@ -74,21 +75,19 @@
         </p>
 
         <p>
-            We chose these years because they encompass the 2019–2020 Australian bushfire season, also known as Black Summer, which was one of the most severe bushfire seasons in Australia's recorded history which began in June 2019 and continued into March 2020. This season was one of the most widespread destruction across the country. The fires burned millions of hectares of land and had significant impacts on wildlife, communities, and the environment (Wikipedia, 2019–20 Australian bushfire season). Rather than focusing only on the overall destruction caused by the fires, we wanted to provide an interactive way for users to explore the geographic distribution and intensity of fire detections. By comparing 2019 and 2020 across individual months, we can look at how fire activity changed over time and identify geographic patterns that may not be immediately apparent when looking at an entire year.
-
+            We chose these years because they encompass the 2019–2020 Australian bushfire season, also known as Black Summer, which was one of the most severe bushfire seasons in Australia's recorded history. It began in June 2019 and continued into March 2020, and it caused some of the most widespread destruction in the country's history. The fires burned millions of hectares of land and had significant impacts on wildlife, communities, and the environment (Wikipedia, 2019–20 Australian bushfire season). Rather than focusing only on the overall destruction caused by the fires, we wanted to provide an interactive way for users to explore the geographic distribution and intensity of fire detections. By comparing 2019 and 2020 across individual months, we can look at how fire activity changed over time and identify geographic patterns that may not be immediately apparent when looking at an entire year.
         </p>
 
         <p>
-            We used NASA’s MODIS (Moderate Resolution Imaging Spectroradiometer) active fire detection data collected by the Terra and Aqua satellites. The dataset contained geographic coordinates and measurements associated with the detected fire activity. Each detection is represented by a point, to show where fires were detected and how detections were distributed across the country.Fire Radiative Power (FRP), measured in megawatts (MW), is represented using color intensity. FRP provides an estimate of the radiant energy released by a fire. The color gradient represents lower and higher FRP values, with more intense colors representing higher FRP values. We used side-by-side maps when comparing both years so that you can look at the same geographic areas during the same month period. 
-
+            We used NASA’s MODIS (Moderate Resolution Imaging Spectroradiometer) active fire detection data collected by the Terra and Aqua satellites. The dataset contained geographic coordinates and measurements associated with the detected fire activity. Each detection is represented by a point, to show where fires were detected and how detections were distributed across the country. Fire Radiative Power (FRP), measured in megawatts (MW), is represented using both color intensity and point size. FRP provides an estimate of the radiant energy released by a fire. The color gradient represents lower and higher FRP values, with more intense colors and larger points representing higher FRP values. Point opacity represents detection confidence, so more transparent points are lower-confidence detections. We used side-by-side maps when comparing both years so that you can look at the same geographic areas during the same month period.
         </p>
 
         <p>
-            We filtered fire detections by year and month to make the data more digestible. We did this to have someone that could compare the same month across 2019 and 2020 instead of comparing entire years with potentially different seasonal distributions. We also capped the FRP color scale at the 95th percentile, which is 288.8 MW in the displayed comparison. This prevented extremely high FRP detections from skewing the color scale and making differences among the majority of detections harder to distinguish, and we kept these extremely high FRP values and displayed them with maximum colour intensity rather than being removed. 
+            We filtered fire detections by year and month to make the data more digestible. This lets users compare the same month across 2019 and 2020 instead of comparing entire years with potentially different seasonal distributions. We also capped the FRP color and size scales at the 95th percentile of FRP across both years, which is 288.8 MW. This prevented extremely high FRP detections from skewing the scales and making differences among the majority of detections harder to distinguish. We kept these extremely high FRP values and displayed them at maximum color intensity and size rather than removing them, and we drew the highest-FRP points on top so they are not hidden beneath lower-intensity detections.
         </p>
 
         <p>
-            We wanted to combine geographic information with fire intensity to create a visualization that was both informative and interactive. We grouped the data by year and month to show comparisons between the two years, then made the map visualizations and incorporated FRP as a color encoding to show the differences and spread in fire intensity. Then, we incorporated interactive sliders and dropdowns for selecting years, months, and comparison modes. We then added hoverable information that displays year, date, FRP and confidence. You can select either 2019 or 2020 or compare both years side by side. You can also select individual months to see how fire detections change throughout the year. These interactions were chosen to show how the fires changed over time, which would have been harder to see in a static map.
+            We wanted to combine geographic information with fire intensity to create a visualization that was both informative and interactive. We grouped the data by year and month to show comparisons between the two years, then made the map visualizations and incorporated FRP as a color and size encoding to show the differences and spread in fire intensity. Then, we incorporated an interactive slider and dropdown for selecting months, years, and comparison modes. We then added hoverable information that displays year, date, FRP and confidence. You can select either 2019 or 2020 or compare both years side by side. You can also select individual months to see how fire detections change throughout the year. These interactions were chosen to show how the fires changed over time, which would have been harder to see in a static map.
         </p>
 
         <h3>Sources</h3>
@@ -105,7 +104,6 @@
         </ol>
 
     </section>
-
 
 </body>
 </html>
