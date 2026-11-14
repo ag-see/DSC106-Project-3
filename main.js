@@ -29,7 +29,7 @@ const data2019 = prepareFires(fires2019, 2019);
 const data2020 = prepareFires(fires2020, 2020);
 const allFires = [...data2019, ...data2020];
 
-// Shared FRP color scale
+// Shared FRP scales
 const frpValues = allFires
     .map(d => d.FRP)
     .filter(d => Number.isFinite(d) && d >= 0)
@@ -37,14 +37,25 @@ const frpValues = allFires
 
 const frpCap = d3.quantile(frpValues, 0.95) ?? 1;
 
+// FRP -> Color
 const colorScale = d3.scaleSequential(d3.interpolateYlOrRd)
     .domain([0, frpCap])
     .clamp(true);
 
-d3.select("#frp-cap")
-    .text(`Color scale capped at the 95th percentile (${frpCap.toFixed(1)} MW).`);
+// FRP -> Circle radius
+const radiusScale = d3.scaleSqrt()
+    .domain([0, frpCap])
+    .range([1, 6])
+    .clamp(true);
 
-// Map dimensions and projection
+// Confidence -> Opacity
+const opacityScale = d3.scaleLinear()
+    .domain([0, 100])
+    .range([0.15, 0.9])
+    .clamp(true);
+
+d3.select("#frp-cap")
+    .text(`Color and size scales capped at the 95th percentile (${frpCap.toFixed(1)} MW).`);// Map dimensions and projection
 const width = 800;
 const height = 600;
 
@@ -91,11 +102,17 @@ function drawFires(layer, fires) {
             d.LONGITUDE,
             d.LATITUDE
         ])[1])
-        .attr("r", 2)
+        .attr("r", d =>
+            Number.isFinite(d.FRP) ? radiusScale(d.FRP) : 1
+        )
         .attr("fill", d =>
             Number.isFinite(d.FRP) ? colorScale(d.FRP) : "#999"
         )
-        .attr("opacity", 0.65)
+        .attr("opacity", d =>
+            Number.isFinite(+d.CONFIDENCE)
+                ? opacityScale(+d.CONFIDENCE)
+                : 0.3
+        )
         .on("mouseover", function(event, d) {
             tooltip
                 .style("display", "block")
