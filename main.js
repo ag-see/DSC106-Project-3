@@ -143,6 +143,13 @@ function updateMap(selection, month) {
         d => d.MONTH === month
     );
 
+    // Calculate median FRP
+    const medianFRP = fires =>
+        d3.median(
+            fires.filter(d => Number.isFinite(d.FRP) && d.FRP >= 0),
+            d => d.FRP
+        );
+
     // Show or hide map panels
     d3.select("#map-2019")
         .style("display", selection === "2020" ? "none" : "block");
@@ -158,17 +165,32 @@ function updateMap(selection, month) {
             `2019: ${fires2019Month.length.toLocaleString()} detections | ` +
             `2020: ${fires2020Month.length.toLocaleString()} detections`
         );
+
+        d3.select("#median-frp").text(
+            `Median FRP — 2019: ${medianFRP(fires2019Month)?.toFixed(2) ?? "N/A"} MW | ` +
+            `2020: ${medianFRP(fires2020Month)?.toFixed(2) ?? "N/A"} MW`
+        );
+
     } else if (selection === "2019") {
         drawFires(fireLayer2019, fires2019Month);
 
         d3.select("#fire-count").text(
             `2019: ${fires2019Month.length.toLocaleString()} detections`
         );
+
+        d3.select("#median-frp").text(
+            `Median FRP: ${medianFRP(fires2019Month)?.toFixed(2) ?? "N/A"} MW`
+        );
+
     } else {
         drawFires(fireLayer2020, fires2020Month);
 
         d3.select("#fire-count").text(
             `2020: ${fires2020Month.length.toLocaleString()} detections`
+        );
+
+        d3.select("#median-frp").text(
+            `Median FRP: ${medianFRP(fires2020Month)?.toFixed(2) ?? "N/A"} MW`
         );
     }
 }
